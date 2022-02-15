@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace GardenTracker.Model
 {
-    public class Garden
-    {
-        public int GardenId { get; set; }
-
-        public string GardenName { get; set; }
-
+    public class Garden : BaseData
+    {    
+        public int SquareFeetSize { get; set; }
     }
 }
