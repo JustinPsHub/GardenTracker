@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace GardenTracker.Model
 {
-    public class BaseData
+    public class BaseData : iCrud
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
-        public DateTime DateClosed { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public DateTime DateTimeCreated { get; set; }
+        public DateTime DateTimeModified { get; set; }
+        public DateTime DateTimeClosed { get; set; }
 
+        public void CreateItem ()
+        {
+            Console.WriteLine("Test Create");
+
+        }
+
+     
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GardenTracker.Model
 {
-    public class Item : BaseData
+    public class Item : BaseData 
+
     {
         public string Type { get; set; }    
         public decimal Price { get; set; }  
