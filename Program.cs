@@ -44,29 +44,42 @@ while (input != "2")
 
                     //linq query if there's more than 1 garden in the list to tell us if we have duplicate garden's
 
-                  // var  gardenList.GroupBy(x => x.Name).Select(x.Name);
+                    if (gardenList.Count > 1)
 
+                    {
+                        var nameCount = from name in gardenList
+                                        group name by name.Name into g
+                                        let count = g.Count()
+                                        orderby count descending
+                                        select new { g.Key, count }
+                                        ;
+
+                        //join nameCount to original 
+
+                        foreach (var item in nameCount)
+                        {
+                            if (item.count > 1)
+
+                            {
+                                Console.Write($"You have {item.count} gardens named {item.Key} in the database.");
+                            }
+                        }
+                    }
+                 
 
                     input = AskForAction();
-
-                  
-
-
+                 
                     break;
                 case "Read":
                     break;
-
                 case "Update":
                     break;
                 case "Delete":
                     break;
 
                 default: Console.WriteLine("You typed something other than Create, Read, Update, or Delete.");
-
                     break;
             }
-
-
         };
     }
 
