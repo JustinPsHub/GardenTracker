@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GardenTracker.Model
 {
-    public class Garden : BaseData , iCrud, IEnumerable
+    public class Garden : BaseData , iCrud
     {
         public Garden(string? gardenName, string? gardenDescription, string? gardenSquareFeet, DateTime createdDateTime)
         {
@@ -33,11 +33,6 @@ namespace GardenTracker.Model
             return garden;
                                    
                
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
     }
 }
