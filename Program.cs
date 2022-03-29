@@ -1,10 +1,12 @@
 ﻿using GardenTracker.Model;
 
-Console.WriteLine("Welcome to the Garden Tracker Application. Select 1 and enter to interact with the Garden Tracker database. Press 2 and enter at any point to close the application.");
+Console.WriteLine("Welcome to the Garden Tracker Application. \n \n" + 
+    "Select 1 and enter to interact with the Garden Tracker database. " +
+    "Press 2 and enter at any point to close the application.");
 string? input = "";
 input = Console.ReadLine();
-List<Garden> gardenList = new List<Garden>();
-List<GardenStruct> dupGardenList = new List<GardenStruct>();
+List<Garden> gardenList = new();
+List<GardenStruct> dupGardenList = new();
 while (input != "2")
     {  
     if (input != "1")
@@ -16,7 +18,7 @@ while (input != "2")
     //do the work
     else
     {
-        Console.WriteLine("The application provides CRUD access to the Garden Tracker database.");
+       Console.WriteLine("The application provides CRUD access to the Garden Tracker database. \n");
        string crudString = AskForAction();
         bool crudStringBool = false;
         crudStringBool = CrudStringIsTwo(crudString);
@@ -26,14 +28,15 @@ while (input != "2")
 
         }
    
-        do
+        while (crudString == "Create" || crudString == "Read" || crudString == "Update" || crudString == "Delete" && crudString != "2")
         {
             switch (crudString)
             {
                 case "Create":
                     Garden garden = new Garden();
                     Console.WriteLine("What's the garden's name?");                                                     
-                    input= Console.ReadLine();                   
+                    input= Console.ReadLine();
+                    Console.WriteLine();
                     garden.Name = input;
                     /*
                     Console.WriteLine("Provide a brief description of the garden.");
@@ -70,8 +73,9 @@ while (input != "2")
                         input = "2";
 
                     }
-
-                    break;
+                    input = crudString;
+                    continue;
+                    //break;
                 case "Read":
                     crudString = DoNothingMethod();
                     crudStringBool = CrudStringIsTwo(crudString);
@@ -98,33 +102,29 @@ while (input != "2")
                         input = "2";
 
                     }
+                 
                     break;
+
                 default: Console.WriteLine($"You entered {crudString}, which is something other than Create, Read, Update, or Delete.");
                     Console.WriteLine();
                     crudString = AskForAction();
                     break;
             }
-            Console.WriteLine($"You entered {crudString}, which is something other than Create, Read, Update, or Delete.");
-            crudString = AskForAction();
-            crudStringBool = CrudStringIsTwo(crudString);
-            if (crudStringBool)
-            {
-                input = "2";
-
-            }
+       //     Console.WriteLine($"You entered {crudString}, which is something other than Create, Read, Update, or Delete.");
+        
+          
             
-        } while (crudString == "Create" || crudString == "Read" || crudString == "Update" || crudString == "Delete" && crudString != "2") ;
+        };
+        if (input != "2")
+        {
+            crudString = AskForAction();
 
-       
+
+        }
+
 
     }
-
-
-
-
-
-
-
+}
 Console.WriteLine("You pressed 2 to close the program. Goodbye!");
 
 gardenList.ForEach(garden =>
@@ -133,7 +133,7 @@ gardenList.ForEach(garden =>
 });
 
 Console.ReadLine();
-}
+
 
 
 static bool CrudStringIsTwo(string crudString)
@@ -145,8 +145,10 @@ static bool CrudStringIsTwo(string crudString)
 static string AskForAction()
 
 {
-    Console.WriteLine("Enter Create to create a new object " +
-    "Enter Read to read from the database. Enter Update to update an object in the database. Enter Delete to delete an object in the database.");
+    Console.WriteLine("Enter Create to create a new object. \n" +
+    "Enter Read to read from the database. \n" +
+    "Enter Update to update an object in the database. \n" +
+    "Enter Delete to delete an object in the database.");
     
     string? answer = "";
     answer = Console.ReadLine();
