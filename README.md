@@ -1,6 +1,6 @@
 # GardenTracker
 
-Purpose - To track land use and garden progress over time by allowing users to input data about their land use.
+Purpose - A console app to track land use and garden progress over time by allowing users to input data about their land use. It'll serve as a custom inventory of what a user spends on things like seeds, compost, and other garden materials and what they used on their land for that growing season or year. The project was created to meet the capstone project requirements of Code Kentucky Software Development with C# course. The idea is to store the user's input in a database but for now, the data is stored in list and destroyed when the program exits.
 
 Verson 1 - Console App	
 
