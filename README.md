@@ -10,8 +10,9 @@ Features
 3. A list of Garden's and GardenStruct's are created and populated with data when more than one Garden is created or a duplicate named Garden is created. When the program starts to exit, I print out the garden list so I've created a dictionary or list, populated it with several values, retrieved at least one value, and used it in the program
 4. I use a LINQ query in the DupNameList and DupNameCheck methods so I used a LINQ query to retrieve information from a data structure (such as a list or array) or file
 
-ToDo's - 1. Implement Read, Update, Delete funcationality to garden list
-	 2. Standup database to store data
-	 3. Convert to MVC app
+ToDo's
+1. Implement Read, Update, Delete funcationality to garden list
+2. Standup database to store data
+3. Convert to MVC app
 
 
