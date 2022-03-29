@@ -4,10 +4,12 @@ Console.WriteLine("Welcome to the Garden Tracker Application. \n \n" +
     "Select 1 and enter to interact with the Garden Tracker database. " +
     "Press 2 and enter at any point to close the application.");
 string? input = "";
+string crudString = "";
+bool crudstringAsked = false;
 input = Console.ReadLine();
 List<Garden> gardenList = new();
 List<GardenStruct> dupGardenList = new();
-while (input != "2")
+while (input != "2" && crudString != "2")
     {  
     if (input != "1")
     {
@@ -18,8 +20,11 @@ while (input != "2")
     //do the work
     else
     {
-       Console.WriteLine("The application provides CRUD access to the Garden Tracker database. \n");
-       string crudString = AskForAction();
+        if (crudString.Length == 0  && crudstringAsked == false) 
+        { Console.WriteLine("The application provides CRUD access to the Garden Tracker database. \n");
+            crudString = AskForAction();
+        } 
+       
         bool crudStringBool = false;
         crudStringBool = CrudStringIsTwo(crudString);
         if (crudStringBool)
@@ -35,9 +40,9 @@ while (input != "2")
                 case "Create":
                     Garden garden = new Garden();
                     Console.WriteLine("What's the garden's name?");                                                     
-                    input= Console.ReadLine();
+               string gardenName= Console.ReadLine();
                     Console.WriteLine();
-                    garden.Name = input;
+                    garden.Name = gardenName;
                     /*
                     Console.WriteLine("Provide a brief description of the garden.");
                     input = Console.ReadLine();
@@ -73,7 +78,7 @@ while (input != "2")
                         input = "2";
 
                     }
-                    input = crudString;
+              //      input = crudString;
                     continue;
                     //break;
                 case "Read":
@@ -110,14 +115,17 @@ while (input != "2")
                     crudString = AskForAction();
                     break;
             }
-       //     Console.WriteLine($"You entered {crudString}, which is something other than Create, Read, Update, or Delete.");
+      //    Console.WriteLine($"You entered {crudString}, which is something other than Create, Read, Update, or Delete.");
         
           
             
         };
         if (input != "2")
         {
+            Console.WriteLine($"You entered {crudString}, which is something other than Create, Read, Update, or Delete. \n" 
+                );
             crudString = AskForAction();
+             crudstringAsked = true;
 
 
         }
@@ -125,12 +133,16 @@ while (input != "2")
 
     }
 }
-Console.WriteLine("You pressed 2 to close the program. Goodbye!");
+Console.WriteLine("\n" +
+    "You pressed 2 to close the program. Heres's a list of all the gardens you entered: ");
 
 gardenList.ForEach(garden =>
 {
     Console.WriteLine(garden.Name);
 });
+
+Console.WriteLine("\n" +
+    "Goodbye!");
 
 Console.ReadLine();
 
@@ -148,8 +160,9 @@ static string AskForAction()
     Console.WriteLine("Enter Create to create a new object. \n" +
     "Enter Read to read from the database. \n" +
     "Enter Update to update an object in the database. \n" +
-    "Enter Delete to delete an object in the database.");
-    
+    "Enter Delete to delete an object in the database. \n" +
+    "Enter 2 to close the program.");
+
     string? answer = "";
     answer = Console.ReadLine();
     return answer;
